@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.get("/", (request, response) => {
-  response.send(`Response Complate`);
+app.get("/api", (req, res) => {
+  res.setHeader("Access-Control-Allow-origin", "http://localhost:3000");
+  res.send({ host: "seo" });
 });
 
 app.listen(PORT, () => {
