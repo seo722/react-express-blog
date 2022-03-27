@@ -4,10 +4,10 @@ import "./App.css";
 
 function App() {
   const [host, setHost] = useState("");
-  useEffect(async () => {
-    const res = await axios.get("/api");
-    setHost(res.data.host);
-  }, []);
+  // useEffect(async () => {
+  //   const res = await axios.get("/api/test");
+  //   console.log(res.data);
+  // }, []);
 
   return (
     <div className="App">
@@ -19,3 +19,5 @@ function App() {
 }
 
 export default App;
+
+//실행할 때 npm run dev 하면 서버랑 클라이언트 둘 다 가동됨
