@@ -3,17 +3,31 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [host, setHost] = useState("");
-  // useEffect(async () => {
-  //   const res = await axios.get("/api/test");
-  //   console.log(res.data);
-  // }, []);
+  const [name, setName] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const res = await axios("/add/data", {
+      method: "POST",
+      data: { data: name },
+      headers: new Headers(),
+    });
+    if (res.data) {
+      console.log("데이터 추가ㅇㅋ");
+    }
+  };
+
+  const onChange = (e) => {
+    setName(e.target.value);
+  };
 
   return (
     <div className="App">
-      <h3>
-        Welcome to <u>{host}</u> Blog
-      </h3>
+      <h3>Welcome to Blog</h3>
+      <form onSubmit={onSubmit}>
+        <input type="text" maxLength={10} onChange={onChange} value={name} />
+        <input type="submit" value="Add" />
+      </form>
     </div>
   );
 }
