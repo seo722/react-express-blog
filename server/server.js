@@ -16,19 +16,6 @@ const {
 } = require("./models");
 sequelize.query("SET NAMES utf8;");
 
-// app.get("/api/test", (req, res) => {
-//   res.setHeader("Access-Control-Allow-origin", "http://localhost:3000");
-//   db.query("select * from test", (err, data) => {
-//     if (!err) {
-//       res.send(data);
-//     } else {
-//       console.log(err);
-//       res.send(err);
-//     }
-//   });
-//   // res.send({ host: "seo" });
-// });
-
 app.post("/add/data", (req, res) => {
   // res.setHeader("Access-Control-Allow-origin", "http://localhost:3000");
   console.log(req.body);
@@ -41,6 +28,17 @@ app.post("/add/data", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      throw err;
+    });
+});
+
+app.get("/get/data", (req, res) => {
+  // res.setHeader("Access-Control-Allow-origin", "http://localhost:3000");
+  Teacher.findAll()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
       throw err;
     });
 });
