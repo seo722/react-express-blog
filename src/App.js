@@ -31,6 +31,44 @@ function App() {
     setName(e.target.value);
   };
 
+  const onModifyClick = async (el) => {
+    const modify = prompt(el.name + "을 어떤 이름으로 변경할까요?");
+    if (modify !== null) {
+      const body = {
+        name: modify,
+        id: el.id,
+      };
+
+      const res = await axios("/modify/data", {
+        method: "POST",
+        data: { modify: body },
+        headers: new Headers(),
+      });
+
+      if (res.data) {
+        alert("데이터를 수정했습니다.");
+        return window.location.reload();
+      }
+    }
+  };
+
+  const onDeleteClick = async (el) => {
+    const remove = window.confirm(el.name + "을 삭제하시겠습니까?");
+
+    if (remove) {
+      const body = { id: el.id };
+      const res = await axios("/delete/data", {
+        method: "post",
+        data: { delete: body },
+        headers: new Headers(),
+      });
+      if (res.data) {
+        alert("데이터를 삭제했습니다");
+        return window.location.reload();
+      }
+    }
+  };
+
   return (
     <div className="App">
       <h3>Welcome to Blog</h3>
@@ -71,13 +109,25 @@ function App() {
                   style={{
                     display: "grid",
                     lineHeight: "40px",
-                    gridTemplateColumns: "32% 35%",
+                    gridTemplateColumns: "32% 35% 20% 0%",
                     width: "50%",
                     marginLeft: "25%",
                   }}
                 >
                   <div> {el.id} </div>
                   <div> {el.name} </div>
+                  <div
+                    style={{ color: "#ababab" }}
+                    onClick={() => onModifyClick(el)}
+                  >
+                    Modify
+                  </div>
+                  <div
+                    style={{ color: "#ababab" }}
+                    onClick={() => onDeleteClick(el)}
+                  >
+                    Delete
+                  </div>
                 </div>
               );
             })
