@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const router = require("./route");
 
 const sequelize = require("./models").sequelize;
 const bodyParser = require("body-parser");
@@ -10,6 +11,8 @@ sequelize.sync();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// app.use("/", router); //mvc패턴 할당하기 해야되는ㄷ ㅔ 못하겟음 ㄱ-
 
 const {
   Teacher,
