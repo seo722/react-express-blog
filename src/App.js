@@ -3,16 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Home, Test } from "./pages";
 import NavBar from "./components/NavBar";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/test/:data" element={<Test />} />
-        <Route path="/test/" element={<Test />} />
-      </Routes>
+      <Header />
     </div>
   );
 }
