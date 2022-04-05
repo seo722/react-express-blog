@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "react-awesome-modal";
 
@@ -30,7 +30,13 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <div></div>
+      <Acenter>
+        <h5>
+          <NavLink style={{ color: "black" }} to="/write">
+            포스트 작성
+          </NavLink>
+        </h5>
+      </Acenter>
       <Acenter>
         <HomeLink to="/">
           <h3>Seo Blog</h3>
