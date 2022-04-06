@@ -1,8 +1,9 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./Home";
 import Write from "./Write";
+import WriteRight from "../components/WriteRight";
 
 const Main = () => {
   return (
@@ -17,7 +18,9 @@ const Main = () => {
         </Routes>
       </div>
       <RightWrapper>
-        <h3>right side</h3>
+        <Link to="/write">
+          <WriteRight />
+        </Link>
       </RightWrapper>
     </MainWrapper>
   );
